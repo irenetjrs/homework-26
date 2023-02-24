@@ -54,3 +54,22 @@ let user_2 = Object.create(user_1);
 user_2.name = 'Bob';
 user_2.age = 25;
 console.log(user_2);
+
+// task 4
+
+function UserType(name){
+   for(let i = 0; i < name.length; ++i){
+      this[i] = name[i];
+      if(i + 1 == name.length){
+         Object.defineProperty(this, 'length', {
+            enumerable: true,
+            writable: false,
+            configurable: true,
+            value: i + 1
+         });
+      }
+   }
+}
+let admins = new UserType(['Mike', 'Bob', 'Nikola']);
+admins.join = Array.prototype.join;
+console.log(admins.join('; '));
